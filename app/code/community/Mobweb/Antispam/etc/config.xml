@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author    Louis Bataillard <info@mobweb.ch>
+ * @package    Mobweb_Antispam
+ * @copyright    Copyright (c) MobWeb GmbH (https://mobweb.ch)
+ */
+-->
+<config>
+    <modules>
+        <Mobweb_Antispam>
+            <version>0.0.1</version>
+        </Mobweb_Antispam>
+    </modules>
+    <global>
+        <helpers>
+            <mobweb_antispam>
+                <class>Mobweb_Antispam_Helper</class>
+            </mobweb_antispam>
+        </helpers>
+        <models>
+            <mobweb_antispam>
+                <class>Mobweb_Antispam_Model</class>
+            </mobweb_antispam>
+            <sales>
+                <rewrite>
+                    <quote_address_total_shipping>Mobweb_Antispam_Model_Quote_Address_Total_Shipping</quote_address_total_shipping>
+                </rewrite>
+            </sales>
+        </models>
+    </global>
+    <frontend>
+        <translate>
+            <modules>
+                <mobweb_antispam>
+                    <files>
+                        <default>mobweb_antispam.csv</default>
+                    </files>
+                </mobweb_antispam>
+            </modules>
+        </translate>
+        <events>
+            <controller_action_predispatch_newsletter_subscriber_new>
+                <observers>
+                    <mobweb_antispam_newsletter_subscriber_save_before>
+                        <class>mobweb_antispam/observer</class>
+                        <method>controllerActionPredispatchNewsletterSubscriberNew</method>
+                        <type>singleton</type>
+                    </mobweb_antispam_newsletter_subscriber_save_before>
+                </observers>
+            </controller_action_predispatch_newsletter_subscriber_new>
+            <controller_action_predispatch_customer_account_createPost>
+                <observers>
+                    <mobweb_antispam_controller_action_predispatch_customer_account_createPost>
+                        <class>mobweb_antispam/observer</class>
+                        <method>controllerActionPredispatchCustomerAccountCreatePost</method>
+                        <type>singleton</type>
+                    </mobweb_antispam_controller_action_predispatch_customer_account_createPost>
+                </observers>
+            </controller_action_predispatch_customer_account_createPost>
+        </events>
+    </frontend>
+    <default>
+        <customer>
+            <antispam>
+                <banned_tlds><![CDATA[ru,ro,ga]]></banned_tlds>
+                <banned_strings><![CDATA[И,Л,Д,П,У,Б,Ы,Ш,Ь,Ж,Г,http://,https://]]></banned_strings>
+            </antispam>
+        </customer>
+    </default>
+</config>
