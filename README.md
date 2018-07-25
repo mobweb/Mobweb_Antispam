@@ -1,6 +1,6 @@
 # MobWeb_Antispam extension for Magento
 
-A simple Magento extension that adds AdWords Conversion tracking for successful purchases.
+A simple Magento 1 extension that checks some form submissions and cancels the submission if any content is considered spammy.
 
 ## Configuration
 
