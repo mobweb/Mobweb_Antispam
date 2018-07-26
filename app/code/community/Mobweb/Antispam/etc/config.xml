@@ -22,11 +22,6 @@
             <mobweb_antispam>
                 <class>Mobweb_Antispam_Model</class>
             </mobweb_antispam>
-            <sales>
-                <rewrite>
-                    <quote_address_total_shipping>Mobweb_Antispam_Model_Quote_Address_Total_Shipping</quote_address_total_shipping>
-                </rewrite>
-            </sales>
         </models>
     </global>
     <frontend>
