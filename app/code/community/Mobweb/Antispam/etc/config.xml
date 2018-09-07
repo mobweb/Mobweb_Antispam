@@ -34,6 +34,13 @@
                 </mobweb_antispam>
             </modules>
         </translate>
+        <layout>
+            <updates>
+                <mobweb_antispam>
+                    <file>mobweb_antispam.xml</file>
+                </mobweb_antispam>
+            </updates>
+        </layout>
         <events>
             <controller_action_predispatch_newsletter_subscriber_new>
                 <observers>
@@ -53,6 +60,15 @@
                     </mobweb_antispam_controller_action_predispatch_customer_account_createPost>
                 </observers>
             </controller_action_predispatch_customer_account_createPost>
+            <controller_action_predispatch_contacts_index_post>
+                <observers>
+                    <mobweb_antispam_controller_action_predispatch_contacts_index_post>
+                        <class>mobweb_antispam/observer</class>
+                        <method>controllerActionPredispatchContactsIndexPost</method>
+                        <type>singleton</type>
+                    </mobweb_antispam_controller_action_predispatch_contacts_index_post>
+                </observers>
+            </controller_action_predispatch_contacts_index_post>
         </events>
     </frontend>
     <default>
@@ -60,6 +76,7 @@
             <antispam>
                 <banned_tlds><![CDATA[ru,ro,ga]]></banned_tlds>
                 <banned_strings><![CDATA[И,Л,Д,П,У,Б,Ы,Ш,Ь,Ж,Г,http://,https://]]></banned_strings>
+                <hidden_field_active><![CDATA[0]]></hidden_field_active>
             </antispam>
         </customer>
     </default>

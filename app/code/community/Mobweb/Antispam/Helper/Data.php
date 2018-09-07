@@ -8,6 +8,8 @@ class Mobweb_Antispam_Helper_Data extends Mage_Core_Helper_Abstract
 {
     const XML_PATH_BANNED_TLDS = 'customer/antispam/banned_tlds';
     const XML_PATH_BANNED_STRINGS = 'customer/antispam/banned_strings';
+    const XML_PATH_HIDDEN_FIELD_ACTIVE = 'customer/antispam/hidden_field_active';
+    const HIDDEN_FIELD_NAME = 'hiddenfield';
 
     /**
      * Log helper
@@ -25,10 +27,13 @@ class Mobweb_Antispam_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function redirectAfterSpam()
     {
-        $this->log('Spam detected, redirecting!');
+        $this->log('Spam detected:');
         
         // Get the request
         $request = Mage::app()->getRequest();
+
+        // Log the spam submission
+        $this->log(print_r($request->getPost(), true));
 
         // Get the referer URL (logic based on Mage_Core_Controller_Varien_Action::_getRefererUrl);
         $refererUrl = $request->getServer('HTTP_REFERER');
@@ -120,5 +125,15 @@ class Mobweb_Antispam_Helper_Data extends Mage_Core_Helper_Abstract
         }
 
         return $isSpam;
+    }
+
+    /**
+     * Returns the config value for the "hidden field" added to the contact form
+     *
+     * @return Boolean
+     */
+    public function hiddenFieldActivated()
+    {
+        return (boolean) Mage::getStoreConfig(self::XML_PATH_HIDDEN_FIELD_ACTIVE);
     }
 }
