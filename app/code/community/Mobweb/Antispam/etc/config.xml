@@ -75,7 +75,7 @@
         <customer>
             <antispam>
                 <banned_tlds><![CDATA[ru,ro,ga]]></banned_tlds>
-                <banned_strings><![CDATA[И,Л,Д,П,У,Б,Ы,Ш,Ь,Ж,Г,http://,https://]]></banned_strings>
+                <banned_strings><![CDATA[И,Л,Д,П,У,Б,Ы,Ш,Ь,Ж,Г,http://,https://,youtube,affiliate,backlink,bitcoin,seo]]></banned_strings>
                 <hidden_field_active><![CDATA[0]]></hidden_field_active>
             </antispam>
         </customer>
